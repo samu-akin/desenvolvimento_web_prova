@@ -68,3 +68,11 @@ def professores():
 @app.route('/alunos')
 def naoDisponivel():
     return render_template('naoDisponivel.html')
+    
+@app.route('/cursos')
+def cursos():
+    return render_template('naoDisponivel.html')
+
+@app.route('/ocorrencias')
+def ocorrencias():
+    return render_template('naoDisponivel.html')
