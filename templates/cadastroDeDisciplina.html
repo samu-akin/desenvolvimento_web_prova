@@ -1,3 +1,4 @@
+<html>
   <head>
     <title>Avaliação semestral</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,7 @@
   </head>
   <body>
       
-    <div class="navbar navbar-inverse" role="navigation">
+  <div class="navbar navbar-inverse" role="navigation">
       <div class="container">
           <div class="navbar-header">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -29,51 +30,48 @@
               </ul>
           </div>
       </div>
+  </div>
+
+  <div class="container">
+  
+  <form action="" method="post" class="form" role="form">
+    {{ form.hidden_tag() }}
+    <div class="form-group required">
+        <label class="control-label" for="name">Cadastre a nova disciplina e o semestre associado:</label>
+        {{ form.name(class="form-control") }}
     </div>
-
-    <div class="container">
-      <h1>Cadastro de Disciplinas</h1>
-
-      <form action="" method="post" class="form" role="form">
-        <div class="form-group required">
-          <label class="control-label" for="name">Cadastre a nova disciplina e o semestre associado:</label>
-          <input class="form-control" id="name" name="name" required="" type="text" value="{{ form.name.data }}">
+    <div class="form-group">
+        <label>{{ form.semester.label }}</label>
+        <div class="radio">
+            <label>{{ form.semester(choices=[('1º semestre', '1º semestre'), ('2º semestre', '2º semestre'), ('3º semestre', '3º semestre'), ('4º semestre', '4º semestre'), ('5º semestre', '5º semestre'), ('6º semestre', '6º semestre')], class_="form-control") }}</label>
         </div>
-        
-        <div class="form-group">
-          <label class="control-label">Semestre:</label>
-          {% for semester_option in ["1º semestre", "2º semestre", "3º semestre", "4º semestre", "5º semestre", "6º semestre"] %}
-            <div class="radio">
-              <label>
-                <input type="radio" name="semester" value="{{ semester_option }}" {% if form.semester.data == semester_option %} checked {% endif %}> {{ semester_option }}
-              </label>
-            </div>
-          {% endfor %}
-        </div>
-        
-        <input class="btn btn-default" id="submit" name="submit" type="submit" value="Cadastrar">
-      </form>
-
-      <h2>Relação de disciplinas cadastradas</h2>
-      <table class="table">
-        <thead>
+    </div>
+    <div class="form-group">
+        {{ form.submit(class="btn btn-default") }}
+    </div>
+  </form>
+  
+  <h2>Relação de disciplinas cadastradas</h2>
+  <table class="table">
+      <thead>
           <tr>
-            <th>Disciplina</th>
-            <th>Semestre</th>
+              <th>Disciplina</th>
+              <th>Semestre</th>
           </tr>
-        </thead>
-        <tbody>
+      </thead>
+      <tbody>
           {% for discipline in disciplines %}
-            <tr>
-              <td>{{ discipline.name }}</td>
-              <td>{{ discipline.semester }}</td>
-            </tr>
+              <tr>
+                  <td>{{ discipline.name }}</td>
+                  <td>{{ discipline.semester }}</td>
+              </tr>
           {% endfor %}
-        </tbody>
-      </table>
-    </div>
+      </tbody>
+  </table>
+  </div>
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
   </body>
 </html>
