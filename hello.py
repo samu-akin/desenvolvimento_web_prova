@@ -12,17 +12,10 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
 
-# Set SECRET_KEY from environment variable (recommended)
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'hard to guess string')
-
-# Construct the URI with a separate variable
-uri = 'sqlite://///home/marianaolfr/aula.060.C.ac/data.sqlite'
-
-# Assign the URI to the configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = uri
-
-# Track modifications setting
+app.config['SECRET_KEY'] = 'hard to guess string'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 
 bootstrap = Bootstrap(app)
 moment = Moment(app)
