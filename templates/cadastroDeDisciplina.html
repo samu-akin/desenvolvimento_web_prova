@@ -1,4 +1,4 @@
-<html>
+
   <head>
     <title>Avaliação semestral</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,44 +33,20 @@
   <div class="container">
   
   <form action="" method="post" class="form" role="form">
-    <input id="csrf_token" name="csrf_token" type="hidden" value="IjI2ZDg2M2Q1NjYwYTM4YmNhMWRhMDc0YTIwMjExMGE4ZDE0YTI3MWMi.ZtJKcQ.fY_s5AP3-CaXEZYL7wTTDWw8G_0">
-  
-  <div class="form-group  required"><label class="control-label" for="name">Cadastre a nova disciplina e o semestre associado:</label>
-          
-            <input class="form-control" id="name" name="name" required="" type="text" value="">
-          
+    {{ form.hidden_tag() }}
+    <div class="form-group required">
+        <label class="control-label" for="name">Cadastre a nova disciplina e o semestre associado:</label>
+        {{ form.name(class="form-control") }}
     </div>
-      <div class="radio">
-          <label>
-            <input id="semester-0" name="semester" type="radio" value="1º semestre"> 1º semestre
-          </label>
+    <div class="form-group">
+        <label>{{ form.semester.label }}</label>
+        <div class="radio">
+            <label>{{ form.semester(choices=[('1º semestre', '1º semestre'), ('2º semestre', '2º semestre'), ('3º semestre', '3º semestre'), ('4º semestre', '4º semestre'), ('5º semestre', '5º semestre'), ('6º semestre', '6º semestre')], class_="form-control") }}</label>
         </div>
-      <div class="radio">
-          <label>
-            <input id="semester-1" name="semester" type="radio" value="2º semestre"> 2º semestre
-          </label>
-        </div>
-      <div class="radio">
-          <label>
-            <input id="semester-2" name="semester" type="radio" value="3º semestre"> 3º semestre
-          </label>
-        </div>
-      <div class="radio">
-          <label>
-            <input id="semester-3" name="semester" type="radio" value="4º semestre"> 4º semestre
-          </label>
-        </div>
-      <div class="radio">
-          <label>
-            <input id="semester-4" name="semester" type="radio" value="5º semestre"> 5º semestre
-          </label>
-        </div>
-      <div class="radio">
-          <label>
-            <input id="semester-5" name="semester" type="radio" value="6º semestre"> 6º semestre
-          </label>
-        </div>
-      <input class="btn btn-default" id="submit" name="submit" type="submit" value="Cadastrar">
+    </div>
+    <div class="form-group">
+        {{ form.submit(class="btn btn-default") }}
+    </div>
   </form>
   
   <h2>Relação de disciplinas cadastradas</h2>
@@ -82,16 +58,18 @@
           </tr>
       </thead>
       <tbody>
-          
-          <tr>    
-          </tr>
+          {% for discipline in disciplines %}
+              <tr>
+                  <td>{{ discipline.name }}</td>
+                  <td>{{ discipline.semester }}</td>
+              </tr>
+          {% endfor %}
       </tbody>
   </table>
   </div>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.min.js" integrity="sha512-42PE0rd+wZ2hNXftlM78BSehIGzezNeQuzihiBCvUEB3CVxHvsShF86wBWwQORNxNINlBPuq7rG4WWhNiTVHFg==" crossorigin="anonymous"></script>
-  
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
   </body>
 </html>
